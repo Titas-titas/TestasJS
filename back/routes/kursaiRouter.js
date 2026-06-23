@@ -1,12 +1,13 @@
 import express from "express";
 import { addCourseC, editCourseC, getAllCoursesC, getCourseC, removeCourseC } from "../controllers/kursaiController.js";
+import { protect } from "../controllers/authController.js";
 
 const kursaiRouter = express.Router();
 
-kursaiRouter.get("/courses", getAllCoursesC);
-kursaiRouter.get("/course/:id", getCourseC);
-kursaiRouter.post("/addCourse", addCourseC);
-kursaiRouter.edit("/editCourse/:id", editCourseC);
-kursaiRouter.delete("/deleteCourse/:id", removeCourseC);
+kursaiRouter.route("/courses").get(protect, getAllCoursesC);
+kursaiRouter.route("/course/:id").get(protect, getCourseC);
+kursaiRouter.route("/addCourse").post(protect, addCourseC);
+kursaiRouter.route("/editCourse/:id").patch(protect, editCourseC);
+kursaiRouter.route("/deleteCourse/:id").delete(protect, removeCourseC);
 
 export default kursaiRouter;
