@@ -3,7 +3,9 @@ import AppError from "../utils/appError.js";
 
 export const getAllStudentsC = async (req, res, next) => {
   try {
-    const students = await getAllStudentsM();
+    const filters = req.query;
+
+    const students = await getAllStudentsM(filters);
 
     res.status(200).json({
       status: "success",

@@ -1,6 +1,8 @@
 import { sql } from "../dbConnection.js";
 
-export const getAllStudentsM = async () => {
+export const getAllStudentsM = async (filters) => {
+  const { vardas, pavarde, kursas_id, sort, order } = filters;
+
   const students = await sql`
     SELECT 
       studentai.id,
@@ -11,7 +13,17 @@ export const getAllStudentsM = async () => {
       kursai.kreditu_skaicius
     FROM studentai
     JOIN kursai ON studentai.kursas_id = kursai.id
-    ORDER BY studentai.id ASC
+    WHERE 1=1
+    ${vardas ? sql`AND studentai.vardas ILIKE ${"%" + vardas + "%"}` : sql``}
+    ${pavarde ? sql`AND studentai.pavarde ILIKE ${"%" + pavarde + "%"}` : sql``}
+    ${kursas_id ? sql`AND studentai.kursas_id = ${kursas_id}` : sql``}
+    ORDER BY 
+      ${
+        sort
+          ? sql`${sql.unsafe(`studentai.${sort}`)}`
+          : sql`studentai.id`
+      }
+      ${order ? sql.unsafe(order) : sql`ASC`}
   `;
 
   return students;
