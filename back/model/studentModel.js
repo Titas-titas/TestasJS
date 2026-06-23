@@ -2,19 +2,35 @@ import { sql } from "../dbConnection.js";
 
 export const getAllStudentsM = async () => {
   const students = await sql`
-    SELECT *
+    SELECT 
+      studentai.id,
+      studentai.vardas,
+      studentai.pavarde,
+      studentai.kursas_id,
+      kursai.mokymo_dalyko_pavadinimas,
+      kursai.kreditu_skaicius
     FROM studentai
-    ORDER BY id ASC
+    JOIN kursai ON studentai.kursas_id = kursai.id
+    ORDER BY studentai.id ASC
   `;
+
   return students;
 };
 
 export const getStudentByIdM = async (id) => {
   const student = await sql`
-    SELECT *
+    SELECT 
+      studentai.id,
+      studentai.vardas,
+      studentai.pavarde,
+      studentai.kursas_id,
+      kursai.mokymo_dalyko_pavadinimas,
+      kursai.kreditu_skaicius
     FROM studentai
-    WHERE id = ${id}
+    JOIN kursai ON studentai.kursas_id = kursai.id
+    WHERE studentai.id = ${id}
   `;
+
   return student[0];
 };
 
