@@ -20,3 +20,19 @@ CREATE TABLE IF NOT EXISTS studentai (
     pavarde VARCHAR NOT NULL,
     kursas_id INTEGER NOT NULL REFERENCES kursai(id) ON DELETE CASCADE
 );
+
+INSERT INTO kursai (mokymo_dalyko_pavadinimas, kreditu_skaicius) VALUES
+('Programavimo pagrindai', 6),
+('Duomenų bazės', 5),
+('Objektinis programavimas', 6),
+('Tinklalapių kūrimas', 4),
+('Matematika kompiuterijoje', 5);
+
+INSERT INTO studentai (vardas, pavarde, kursas_id) VALUES
+('Jonas', 'Jonaitis', 1),
+('Petras', 'Petraitis', 1),
+('Lina', 'Pavardenė', 2),
+('Mantas', 'Kazlauskas', 3),
+('Gabrielė', 'Smiltytė', 4),
+('Andrius', 'Rimkus', 5),
+('Eglė', 'Žilinskaitė', 2);

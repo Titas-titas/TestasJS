@@ -8,3 +8,12 @@ export const getAllStudentsM = async () => {
   `;
   return students;
 };
+
+export const getStudentByIdM = async (id) => {
+  const student = await sql`
+    SELECT *
+    FROM studentai
+    WHERE id = ${id}
+  `;
+  return student[0];
+};

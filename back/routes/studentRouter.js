@@ -1,8 +1,9 @@
 import express from "express";
-import { getAllStudentsC } from "../controllers/studentController.js";
+import { getAllStudentsC, getStudentC } from "../controllers/studentController.js";
 
-const StudentRouter = express.Router();
+const studentRouter = express.Router();
 
-StudentRouter.get("/studentai", getAllStudentsC);
+studentRouter.get("/studentai", getAllStudentsC);
+studentRouter.get("/studentas/:id", getStudentC);
 
-export default StudentRouter;
+export default studentRouter;
