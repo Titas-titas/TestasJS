@@ -1,4 +1,4 @@
-import { createStudentM, getAllStudentsM, getStudentByIdM, updateStudentM } from "../model/studentModel.js";
+import { createStudentM, deleteStudentM, getAllStudentsM, getStudentByIdM, updateStudentM } from "../model/studentModel.js";
 import AppError from "../utils/appError.js";
 
 export const getAllStudentsC = async (req, res, next) => {
@@ -63,6 +63,27 @@ export const editStudentC = async (req, res, next) => {
     res.status(200).json({
       status: "success",
       data: updated,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const removeStudentC = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const existing = await getStudentByIdM(id);
+
+    if (!existing) {
+      throw new AppError("Student ID is invalid", 404);
+    }
+
+    await deleteStudentM(id);
+
+    res.status(200).json({
+      status: "success",
+      message: "The student has been deleted.",
     });
   } catch (error) {
     next(error);

@@ -40,3 +40,11 @@ export const updateStudentM = async (id, student) => {
   return updated[0];
 };
 
+export const deleteStudentM = async (id) => {
+  const deleted = await sql`
+    DELETE FROM studentai
+    WHERE id = ${id}
+    RETURNING *
+  `;
+  return deleted[0];
+};
