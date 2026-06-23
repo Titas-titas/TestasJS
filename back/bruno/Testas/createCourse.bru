@@ -1,0 +1,22 @@
+meta {
+  name: createCourse
+  type: http
+  seq: 10
+}
+
+post {
+  url: http://localhost:3000/api/v1/kursai/addCourse
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "mokymo_dalyko_pavadinimas": "Matematika",
+    "kreditu_skaicius": 6
+  }
+}
+
+settings {
+  encodeUrl: true
+}

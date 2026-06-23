@@ -1,0 +1,22 @@
+meta {
+  name: editCourse
+  type: http
+  seq: 14
+}
+
+patch {
+  url: http://localhost:3000/api/v1/kursai/editCourse/5
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "mokymo_dalyko_pavadinimas": "Javascript",
+    "kreditu_skaicius": 7
+  }
+}
+
+settings {
+  encodeUrl: true
+}

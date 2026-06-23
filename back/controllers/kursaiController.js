@@ -1,4 +1,4 @@
-import { createCourseM, getAllCoursesM, getCourseByIdM, updateCourseM } from "../model/kursaiModel.js";
+import { createCourseM, deleteCourseM, getAllCoursesM, getCourseByIdM, updateCourseM } from "../model/kursaiModel.js";
 import AppError from "../utils/appError.js";
 
 export const getAllCoursesC = async (req, res, next) => {
