@@ -8,8 +8,8 @@ const kursaiRouter = express.Router();
 
 kursaiRouter.route("/courses").get(protect, getAllCoursesC);
 kursaiRouter.route("/course/:id").get(protect, getCourseC);
-kursaiRouter.route("/addCourse").post(protect, validate, validateNewCourse, addCourseC);
-kursaiRouter.route("/editCourse/:id").patch(protect, editCourseC);
+kursaiRouter.route("/addCourse").post(protect, validateNewCourse, validate, addCourseC);
+kursaiRouter.route("/editCourse/:id").patch(protect, validateNewCourse, validate, editCourseC);
 kursaiRouter.route("/deleteCourse/:id").delete(protect, removeCourseC);
 
 export default kursaiRouter;
