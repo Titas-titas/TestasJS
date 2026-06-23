@@ -17,3 +17,12 @@ export const getCourseByIdM = async (id) => {
   `;
   return course[0];
 };
+
+export const createCourseM = async (course) => {
+  const created = await sql`
+    INSERT INTO kursai
+    ${sql(course, "mokymo_dalyko_pavadinimas", "kreditu_skaicius")}
+    RETURNING *
+  `;
+  return created[0];
+};

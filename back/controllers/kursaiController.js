@@ -1,4 +1,4 @@
-import { getAllCoursesM, getCourseByIdM } from "../model/kursaiModel.js";
+import { createCourseM, getAllCoursesM, getCourseByIdM } from "../model/kursaiModel.js";
 
 export const getAllCoursesC = async (req, res, next) => {
   try {
@@ -26,6 +26,21 @@ export const getCourseC = async (req, res, next) => {
     res.status(200).json({
       status: "success",
       data: course,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const addCourseC = async (req, res, next) => {
+  try {
+    const newCourse = req.body;
+
+    const created = await createCourseM(newCourse);
+
+    res.status(201).json({
+      status: "success",
+      data: created,
     });
   } catch (error) {
     next(error);
