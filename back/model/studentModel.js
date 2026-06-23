@@ -26,3 +26,17 @@ export const createStudentM = async (student) => {
   `;
   return newStudent[0];
 };
+
+export const updateStudentM = async (id, student) => {
+  const updated = await sql`
+    UPDATE studentai
+    SET
+      vardas = ${student.vardas},
+      pavarde = ${student.pavarde},
+      kursas_id = ${student.kursas_id}
+    WHERE id = ${id}
+    RETURNING *
+  `;
+  return updated[0];
+};
+
