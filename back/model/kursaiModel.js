@@ -38,3 +38,11 @@ export const updateCourseM = async (id, course) => {
   `;
   return updated[0];
 };
+
+export const deleteCourseM = async (id) => {
+  await sql`
+    DELETE FROM kursai
+    WHERE id = ${id}
+    RETURNING *
+  `;
+};

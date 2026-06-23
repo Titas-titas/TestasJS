@@ -68,3 +68,24 @@ export const editCourseC = async (req, res, next) => {
     next(error);
   }
 };
+
+export const removeCourseC = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const existing = await getCourseByIdM(id);
+
+    if (!existing) {
+      throw new AppError("Course ID is invalid", 404);
+    }
+
+    await deleteCourseM(id);
+
+    res.status(200).json({
+      status: "success",
+      message: "The course has been deleted.",
+    });
+  } catch (error) {
+    next(error);
+  }
+};
