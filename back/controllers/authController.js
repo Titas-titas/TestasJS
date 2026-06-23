@@ -1,5 +1,5 @@
 import argon2 from "argon2";
-import { createUser, getUserByEmail, getUserById } from "../models/usersModel.js";
+import { createUser, getUserByEmail, getUserById } from "../model/usersModel.js";
 import AppError from "../utils/appError.js";
 import jwt from "jsonwebtoken";
 
