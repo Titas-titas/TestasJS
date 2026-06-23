@@ -1,0 +1,15 @@
+meta {
+  name: createStudent
+  type: http
+  seq: 7
+}
+
+post {
+  url: http://localhost:3000/api/v1/students/add
+  body: json
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}

@@ -17,3 +17,12 @@ export const getStudentByIdM = async (id) => {
   `;
   return student[0];
 };
+
+export const createStudentM = async (student) => {
+  const newStudent = await sql`
+    INSERT INTO studentai
+    ${sql(student, "vardas", "pavarde", "kursas_id")}
+    RETURNING *
+  `;
+  return newStudent[0];
+};
