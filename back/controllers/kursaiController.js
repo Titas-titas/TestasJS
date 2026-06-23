@@ -1,4 +1,5 @@
-import { createCourseM, getAllCoursesM, getCourseByIdM } from "../model/kursaiModel.js";
+import { createCourseM, getAllCoursesM, getCourseByIdM, updateCourseM } from "../model/kursaiModel.js";
+import AppError from "../utils/appError.js";
 
 export const getAllCoursesC = async (req, res, next) => {
   try {
@@ -47,3 +48,23 @@ export const addCourseC = async (req, res, next) => {
   }
 };
 
+export const editCourseC = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const existing = await getCourseByIdM(id);
+
+    if (!existing) {
+      throw new AppError("Course ID is invalid", 404);
+    }
+
+    const updated = await updateCourseM(id, req.body);
+
+    res.status(200).json({
+      status: "success",
+      data: updated,
+    });
+  } catch (error) {
+    next(error);
+  }
+};

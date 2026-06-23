@@ -26,3 +26,15 @@ export const createCourseM = async (course) => {
   `;
   return created[0];
 };
+
+export const updateCourseM = async (id, course) => {
+  const updated = await sql`
+    UPDATE kursai
+    SET
+      mokymo_dalyko_pavadinimas = ${course.mokymo_dalyko_pavadinimas},
+      kreditu_skaicius = ${course.kreditu_skaicius}
+    WHERE id = ${id}
+    RETURNING *
+  `;
+  return updated[0];
+};
