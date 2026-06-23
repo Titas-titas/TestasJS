@@ -7,10 +7,10 @@ import validateFilterStudents from "../validators/filterStudents.js";
 
 const studentRouter = express.Router();
 
-studentRouter.route("/studentai").get(protect, validateFilterStudents, validate, getAllStudentsC);
-studentRouter.route("/studentas/:id").get(protect, getStudentC);
-studentRouter.route("/addStudentas").post(protect, validateNewStudent, validate, createStudentC);
-studentRouter.route("/editStudentas/:id").patch(protect, validateNewStudent, validate, editStudentC);
-studentRouter.route("/deleteStudentas/:id").delete(protect, removeStudentC);
+studentRouter.route("/studentai").get(protect, allowAccessTo("user", "admin"), validateFilterStudents, validate, getAllStudentsC);
+studentRouter.route("/studentas/:id").get(protect, allowAccessTo("user", "admin"), getStudentC);
+studentRouter.route("/addStudentas").post(protect, allowAccessTo("admin"), validateNewStudent, validate, createStudentC);
+studentRouter.route("/editStudentas/:id").patch(protect, allowAccessTo("admin"), validateNewStudent, validate, editStudentC);
+studentRouter.route("/deleteStudentas/:id").delete(protect, allowAccessTo("admin"), removeStudentC);
 
 export default studentRouter;
