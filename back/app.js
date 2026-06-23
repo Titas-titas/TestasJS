@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors"
 import cookieParser from "cookie-parser";
 import usersRouter from "./routes/userRouter.js";
+import StudentRouter from "./routes/studentRouter.js";
 
 //create server
 const app = express();
@@ -28,6 +29,7 @@ app.use((req, res, next) => {
 
 //mounting the routers
 app.use("/api/v1/users", usersRouter);
+app.use("/api/v1/students", StudentRouter);
 
 //centralizes error handling middleware, if first functions argument is error, express will know that this is error handling middleware
 app.use((err, req, res, next) => {
