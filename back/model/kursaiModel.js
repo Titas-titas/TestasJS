@@ -8,3 +8,12 @@ export const getAllCoursesM = async () => {
   `;
   return courses;
 };
+
+export const getCourseByIdM = async (id) => {
+  const course = await sql`
+    SELECT *
+    FROM kursai
+    WHERE id = ${id}
+  `;
+  return course[0];
+};
