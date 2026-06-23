@@ -1,6 +1,8 @@
 import { createCourseM, deleteCourseM, getAllCoursesM, getCourseByIdM, updateCourseM } from "../model/kursaiModel.js";
 import AppError from "../utils/appError.js";
 
+
+//get all
 export const getAllCoursesC = async (req, res, next) => {
   try {
     const courses = await getAllCoursesM();
@@ -14,6 +16,7 @@ export const getAllCoursesC = async (req, res, next) => {
   }
 };
 
+//get by id
 export const getCourseC = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -33,6 +36,7 @@ export const getCourseC = async (req, res, next) => {
   }
 };
 
+//post
 export const addCourseC = async (req, res, next) => {
   try {
     const newCourse = req.body;
@@ -48,6 +52,7 @@ export const addCourseC = async (req, res, next) => {
   }
 };
 
+//patch
 export const editCourseC = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -69,6 +74,7 @@ export const editCourseC = async (req, res, next) => {
   }
 };
 
+//delete
 export const removeCourseC = async (req, res, next) => {
   try {
     const { id } = req.params;

@@ -1,5 +1,6 @@
 import { sql } from "../dbConnection.js";
 
+//view all
 export const getAllCoursesM = async () => {
   const courses = await sql`
     SELECT *
@@ -9,6 +10,7 @@ export const getAllCoursesM = async () => {
   return courses;
 };
 
+//view by id
 export const getCourseByIdM = async (id) => {
   const course = await sql`
     SELECT *
@@ -18,6 +20,7 @@ export const getCourseByIdM = async (id) => {
   return course[0];
 };
 
+//add
 export const createCourseM = async (course) => {
   const created = await sql`
     INSERT INTO kursai
@@ -27,6 +30,7 @@ export const createCourseM = async (course) => {
   return created[0];
 };
 
+//edit
 export const updateCourseM = async (id, course) => {
   const updated = await sql`
     UPDATE kursai
@@ -39,6 +43,7 @@ export const updateCourseM = async (id, course) => {
   return updated[0];
 };
 
+//delete
 export const deleteCourseM = async (id) => {
   await sql`
     DELETE FROM kursai

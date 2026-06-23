@@ -1,6 +1,7 @@
 import { createStudentM, deleteStudentM, getAllStudentsM, getStudentByIdM, updateStudentM } from "../model/studentModel.js";
 import AppError from "../utils/appError.js";
 
+//get all
 export const getAllStudentsC = async (req, res, next) => {
   try {
     const filters = req.query;
@@ -16,6 +17,7 @@ export const getAllStudentsC = async (req, res, next) => {
   }
 };
 
+//get by id
 export const getStudentC = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -35,6 +37,7 @@ export const getStudentC = async (req, res, next) => {
   }
 };
 
+//post
 export const createStudentC = async (req, res, next) => {
   try {
     const newStudent = req.body;
@@ -50,6 +53,7 @@ export const createStudentC = async (req, res, next) => {
   }
 };
 
+//patch
 export const editStudentC = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -71,6 +75,7 @@ export const editStudentC = async (req, res, next) => {
   }
 };
 
+//delete
 export const removeStudentC = async (req, res, next) => {
   try {
     const { id } = req.params;

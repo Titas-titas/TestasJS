@@ -4,7 +4,6 @@ import AppError from "../utils/appError.js";
 const validate = (req, res, next) => {
   try {
     const errors = validationResult(req);
-    // console.log(errors.array()[0]);
     if (!errors.isEmpty()) {
       const errorMsg = errors.array()[0].msg;
       throw new AppError(errorMsg, 400);

@@ -1,5 +1,6 @@
 import { sql } from "../dbConnection.js";
 
+//view all
 export const getAllStudentsM = async (filters) => {
   const { vardas, pavarde, kursas_id, sort, order } = filters;
 
@@ -29,6 +30,7 @@ export const getAllStudentsM = async (filters) => {
   return students;
 };
 
+//view by id
 export const getStudentByIdM = async (id) => {
   const student = await sql`
     SELECT 
@@ -46,6 +48,7 @@ export const getStudentByIdM = async (id) => {
   return student[0];
 };
 
+//add
 export const createStudentM = async (student) => {
   const newStudent = await sql`
     INSERT INTO studentai
@@ -55,6 +58,7 @@ export const createStudentM = async (student) => {
   return newStudent[0];
 };
 
+//edit
 export const updateStudentM = async (id, student) => {
   const updated = await sql`
     UPDATE studentai
@@ -68,6 +72,7 @@ export const updateStudentM = async (id, student) => {
   return updated[0];
 };
 
+//delete
 export const deleteStudentM = async (id) => {
   const deleted = await sql`
     DELETE FROM studentai
